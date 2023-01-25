@@ -6,7 +6,17 @@ import {init_chipSelector} from "chip-selector/dist";
 import * as DzsChipSelectorWeb from "chip-selector/dist/dzsChipSelectorWebComponents-dev";
 import {Header} from "./components/Header";
 import {themes, ThemeContext} from "./contexts/theme";
+// import styled, { createGlobalStyle } from 'styled-components';
+// import 'chip-selector/dist/style/skins/skin-default.css';
+import quillCss from 'chip-selector/dist/style/skins/skin-default.css';
 
+console.log(quillCss, quillCss.toString());
+
+// const ChipSelector = styled('dzs-chip-selector')`;
+import {dzsChipSelectorWebComponent_init} from "chip-selector/dist/dzsChipSelectorWebComponents";
+
+
+dzsChipSelectorWebComponent_init();
 class App extends React.Component {
 
   chipSelectorOptions = JSON.parse('[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]');
@@ -39,26 +49,21 @@ class App extends React.Component {
 
     /** @type {DzsChipSelector} */
     const $myRef = self.myRef.current;
-    async function loadCss(){
-
-      // const path = 'chip-selector/dist/style/skins/skin-default.css';
-      /**
-       *
-       * @type {Module}
-       */
-
-      /** @type {HTMLElement} */
-
-      import('chip-selector/dist/style/skins/skin-default.css').then((...args) => {
-        const cssStyle = args[0].default[0][1];
-        $myRef.wrapper.insertAdjacentHTML('beforeBegin', `<style>${cssStyle}</style>`)
-      })
-
-    }
+    console.log('$myRef- ', $myRef);
+    // async function loadCss(){
+    //
+    //
+    //   import('chip-selector/dist/style/skins/skin-default.css').then((...args) => {
+    //     const cssStyle = args[0].default[0][1];
+    //     $myRef.wrapper.insertAdjacentHTML('beforeBegin', `<style>${cssStyle}</style>`)
+    //   })
+    //
+    // }
     $myRef.onUpdate = onUpdate;
+    $myRef.wrapper.insertAdjacentHTML('beforeBegin', `<style>${quillCss.toString()}</style>`)
 
 
-    loadCss().then();
+    // loadCss().then();
 
 
   }
@@ -113,6 +118,10 @@ class App extends React.Component {
               return null;
             })
           }
+          {/*<>*/}
+          {/*  <ChipSelector ref={this.myRef} data-persistentOptions={JSON.stringify(this.chipSelectorOptions)}>*/}
+          {/*  </ChipSelector>*/}
+          {/*</>*/}
           <dzs-chip-selector ref={this.myRef} data-persistentOptions={JSON.stringify(this.chipSelectorOptions)}>
             <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-default.css"/>
           </dzs-chip-selector>
