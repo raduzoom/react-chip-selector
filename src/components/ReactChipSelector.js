@@ -28,6 +28,7 @@ export function ReactChipSelector(props) {
   let suggestedOptions =   []
   let chipSelectorOptions =   {
 
+    viewSkin: 'default'
   }
 
   if(props.chipSelectorOptions){
@@ -68,7 +69,7 @@ export function ReactChipSelector(props) {
 
   useEffect(() => {
     $myRef = myRef.current;
-    addStyle('https://unpkg.com/chip-selector/dist/style/skins/skin-default.css');
+    addStyle(`https://unpkg.com/chip-selector/dist/style/skins/skin-${chipSelectorOptions.viewSkin}.css`);
     $myRef.onUpdate = onUpdate;
 
 
@@ -79,19 +80,12 @@ export function ReactChipSelector(props) {
 
 
   }, []);
-
+  const wrapperStyle = {
+    width: '100%',
+  }
 
   return (
-    <div>
-      {
-        selectedOptions.map((option)=>{
-          if(option.currentStatus==='checked'){
-
-            return `${option.value} `;
-          }
-          return null;
-        })
-      }
+    <div style={wrapperStyle}>
       <dzs-chip-selector ref={myRef} data-persistentOptions={JSON.stringify(suggestedOptions)} data-chip-selector-options={JSON.stringify(chipSelectorOptions)}>
         <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-default.css"/>
       </dzs-chip-selector>

@@ -7,13 +7,15 @@ import { dzsChipSelectorWebComponent_init } from 'chip-selector/dist/dzsChipSele
 dzsChipSelectorWebComponent_init();
 function ReactChipSelector(props) {
   var _useState = useState([]),
-    _useState2 = _slicedToArray(_useState, 2),
-    selectedOptions = _useState2[0],
-    setSelectedOptions = _useState2[1];
+    _useState2 = _slicedToArray(_useState, 2);
+    _useState2[0];
+    var setSelectedOptions = _useState2[1];
 
   /** @var {ChipSelectorItem[]} */
   var suggestedOptions = [];
-  var chipSelectorOptions = {};
+  var chipSelectorOptions = {
+    viewSkin: 'default'
+  };
   if (props.chipSelectorOptions) {
     chipSelectorOptions = Object.assign(chipSelectorOptions, props.chipSelectorOptions);
   }
@@ -56,18 +58,18 @@ function ReactChipSelector(props) {
   }();
   useEffect(function () {
     $myRef = myRef.current;
-    addStyle('https://unpkg.com/chip-selector/dist/style/skins/skin-default.css');
+    addStyle("https://unpkg.com/chip-selector/dist/style/skins/skin-".concat(chipSelectorOptions.viewSkin, ".css"));
     $myRef.onUpdate = onUpdate;
     return function cleanup() {
       console.log('clean up ONCE');
     };
   }, []);
-  return /*#__PURE__*/React.createElement("div", null, selectedOptions.map(function (option) {
-    if (option.currentStatus === 'checked') {
-      return "".concat(option.value, " ");
-    }
-    return null;
-  }), /*#__PURE__*/React.createElement("dzs-chip-selector", {
+  var wrapperStyle = {
+    width: '100%'
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: wrapperStyle
+  }, /*#__PURE__*/React.createElement("dzs-chip-selector", {
     ref: myRef,
     "data-persistentOptions": JSON.stringify(suggestedOptions),
     "data-chip-selector-options": JSON.stringify(chipSelectorOptions)
