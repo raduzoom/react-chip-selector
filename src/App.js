@@ -1,73 +1,54 @@
 import logo from './logo.svg';
 import './App.css';
 import React from "react";
-
-import {init_chipSelector} from "chip-selector/dist";
-import * as DzsChipSelectorWeb from "chip-selector/dist/dzsChipSelectorWebComponents-dev";
 import {Header} from "./components/Header";
-import {themes, ThemeContext} from "./contexts/theme";
+import {ThemeContext, themes} from "./contexts/theme";
 // import styled, { createGlobalStyle } from 'styled-components';
 // import 'chip-selector/dist/style/skins/skin-default.css';
-import quillCss from 'chip-selector/dist/style/skins/skin-default.css';
-
-console.log(quillCss, quillCss.toString());
-
-// const ChipSelector = styled('dzs-chip-selector')`;
-import {dzsChipSelectorWebComponent_init} from "chip-selector/dist/dzsChipSelectorWebComponents";
+// import quillCss from 'chip-selector/dist/style/skins/skin-default.css';
+import {ReactChipSelector} from "./components";
 
 
-dzsChipSelectorWebComponent_init();
+
 class App extends React.Component {
 
-  chipSelectorOptions = JSON.parse('[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]');
+  /** @var {ChipSelectorItem[]} */
+  chipSelectorOptions = [{
+    "htmlContent": "Apple to me",
+    "value": "apple",
+    "currentStatus": "unchecked"
+  }, {
+    "htmlContent": "Orange ",
+    "value": "orange",
+    "currentStatus": "checked"
+  },
+    {"htmlContent": "<span>Apricot</span> ", "value": "apricot", "currentStatus": "unchecked"}]
+  ;
 
   constructor(props) {
     super(props);
-    this.state = {selectedOptions:this.chipSelectorOptions, showHeader: true};
+    this.state = {selectedOptions: this.chipSelectorOptions, showHeader: true};
     this.myRef = React.createRef();
+    this.cssRef = React.createRef();
   }
 
-  testType(arg){
+  testType(arg) {
 
   }
 
   componentDidMount() {
-    setTimeout(()=>{
+
+
+    setTimeout(() => {
       this.setState({
         showHeader: false
       });
     }, 5000)
-    const onUpdate  = async (allOptions) => {
-      const selectedOptions = allOptions.filter((el)=>el.currentStatus==='checked');
-      console.log({selectedOptions});
-      this.setState({
-        selectedOptions: selectedOptions
-      })
-    }
-
-    const self = this;
-
-    /** @type {DzsChipSelector} */
-    const $myRef = self.myRef.current;
-    console.log('$myRef- ', $myRef);
-    // async function loadCss(){
-    //
-    //
-    //   import('chip-selector/dist/style/skins/skin-default.css').then((...args) => {
-    //     const cssStyle = args[0].default[0][1];
-    //     $myRef.wrapper.insertAdjacentHTML('beforeBegin', `<style>${cssStyle}</style>`)
-    //   })
-    //
-    // }
-    $myRef.onUpdate = onUpdate;
-    $myRef.wrapper.insertAdjacentHTML('beforeBegin', `<style>${quillCss.toString()}</style>`)
-
-
-    // loadCss().then();
 
 
   }
-  handleSubmitClick () {
+
+  handleSubmitClick() {
     const name = this._name.value;
     // do something with `name`
     console.log(name);
@@ -76,7 +57,7 @@ class App extends React.Component {
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true };
+    return {hasError: true};
   }
 
   componentDidCatch(error, errorInfo) {
@@ -84,25 +65,34 @@ class App extends React.Component {
     console.log(error, errorInfo);
   }
 
-  render() {
+  loadedSkin() {
+    console.log('loadedSkin - ', this);
+  }
 
-//     const FancyButton = React.forwardRef((props, ref) => (
-//
-//     ));
-// // You can now get a ref directly to the DOM button:
-//     const ref = React.createRef();
+  render() {
 
 
     const HeaderComponent = (<Header></Header>);
+
+    const chipSelectorOptions = {"inputPlaceholderText":"ceva2"};
+
+    const handleSelectedOptionsChange = (options) => {
+      console.log('options - ', options);
+      this.setState({
+        selectedOptions: options
+      });
+    };
+
+
     return (
       <div className="App">
         <ThemeContext.Provider value={themes.dark}>
-        {!!this.state.showHeader && HeaderComponent}
+          {!!this.state.showHeader && HeaderComponent}
         </ThemeContext.Provider>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo"/>
           <div>
-            <input type="text" ref={(input) => (this._name = input)} />
+            <input type="text" ref={(input) => (this._name = input)}/>
             <button onClick={this.handleSubmitClick.bind(this)}>Sign up</button>
           </div>
 
@@ -110,8 +100,8 @@ class App extends React.Component {
             234Edit <code>src/App.js</code> and save to reload 2 3 4 5.
           </p>
           {
-            this.state.selectedOptions.map((option)=>{
-              if(option.currentStatus==='checked'){
+            this.state.selectedOptions.map((option) => {
+              if (option.currentStatus === 'checked') {
 
                 return `${option.value} `;
               }
@@ -122,9 +112,9 @@ class App extends React.Component {
           {/*  <ChipSelector ref={this.myRef} data-persistentOptions={JSON.stringify(this.chipSelectorOptions)}>*/}
           {/*  </ChipSelector>*/}
           {/*</>*/}
-          <dzs-chip-selector ref={this.myRef} data-persistentOptions={JSON.stringify(this.chipSelectorOptions)}>
-            <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-default.css"/>
-          </dzs-chip-selector>
+
+          <ReactChipSelector suggestedOptions={this.chipSelectorOptions} chipSelectorOptions={(chipSelectorOptions)}
+                             onSelectedOptionsChange={handleSelectedOptionsChange}></ReactChipSelector>
           <a
             className="App-link"
             href="https://reactjs.org"
@@ -133,18 +123,12 @@ class App extends React.Component {
           >
             Learn React
           </a>
+          {/*<link rel="stylesheet" ref={this.cssRef} href="https://unpkg.com/chip-selector@1.0.34/dist/style/skins/skin-default.css" onLoad={this.loadedSkin.bind(this)}/>*/}
         </header>
       </div>
     );
   }
 }
 
-// function App() {
-//   // console.log(DzsChipSelector2.constructor);
-//
-//   return (
-//
-//   );
-// }
 
 export default App;
