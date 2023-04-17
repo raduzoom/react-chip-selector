@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 /**
  * @typedef {Object} ChipSelectorItem
@@ -6,8 +6,6 @@ import React, {useState, useEffect, useRef} from 'react';
  * @property {string} value - value
  * @property {string} currentStatus - current status
  */
-
-
 /**
  *
  * @param {Object} props
@@ -17,7 +15,9 @@ import React, {useState, useEffect, useRef} from 'react';
  * @constructor
  */
 import {dzsChipSelectorWebComponent_init} from "chip-selector/dist/dzsChipSelectorWebComponents";
+
 dzsChipSelectorWebComponent_init();
+
 export function ReactChipSelector(props) {
 
   const self = this;
@@ -25,18 +25,18 @@ export function ReactChipSelector(props) {
 
 
   /** @var {ChipSelectorItem[]} */
-  let suggestedOptions =   []
-  let chipSelectorOptions =   {
+  let suggestedOptions = []
+  let chipSelectorOptions = {
 
     viewSkin: 'default'
   }
 
-  if(props.chipSelectorOptions){
+  if (props.chipSelectorOptions) {
     chipSelectorOptions = Object.assign(chipSelectorOptions, props.chipSelectorOptions);
   }
 
 
-  if(props.suggestedOptions){
+  if (props.suggestedOptions) {
     suggestedOptions = props.suggestedOptions;
   }
   const myRef = useRef(null);
@@ -55,14 +55,14 @@ export function ReactChipSelector(props) {
   };
 
 
-  const onUpdate  = async (allOptions) => {
-    const selectedOptions = allOptions.filter((el)=>el.currentStatus==='checked');
+  const onUpdate = async (allOptions) => {
+    const selectedOptions = allOptions.filter((el) => el.currentStatus === 'checked');
     setSelectedOptions(
       selectedOptions
     );
 
-    if(props.onSelectedOptionsChange){
-    props.onSelectedOptionsChange(selectedOptions); // calling the callback function to update selected options in parent component
+    if (props.onSelectedOptionsChange) {
+      props.onSelectedOptionsChange(selectedOptions); // calling the callback function to update selected options in parent component
     }
   }
 
@@ -71,7 +71,6 @@ export function ReactChipSelector(props) {
     $myRef = myRef.current;
     addStyle(`https://unpkg.com/chip-selector/dist/style/skins/skin-${chipSelectorOptions.viewSkin}.css`);
     $myRef.onUpdate = onUpdate;
-
 
 
     return function cleanup() {
@@ -86,7 +85,8 @@ export function ReactChipSelector(props) {
 
   return (
     <div style={wrapperStyle}>
-      <dzs-chip-selector ref={myRef} data-persistentOptions={JSON.stringify(suggestedOptions)} data-chip-selector-options={JSON.stringify(chipSelectorOptions)}>
+      <dzs-chip-selector ref={myRef} data-persistentOptions={JSON.stringify(suggestedOptions)}
+                         data-chip-selector-options={JSON.stringify(chipSelectorOptions)}>
         <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-default.css"/>
       </dzs-chip-selector>
     </div>

@@ -1,8 +1,43 @@
-# Getting Started with Create React App
+# React Chip Selector with search
 
+
+
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://github.com/raduzoom/react-chip-selector
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+
+You can find examples in the github repository.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<!-- ABOUT THE PROJECT -->
+## About The Component
+
+
+**Chip selector** is a universal tool that helps you display a chip selector to your project. The chip selector has an input where you can filter out results. You can place it anywhere via simple markup:
+
+
+![skin-default](https://user-images.githubusercontent.com/58981243/232539174-4c2f69bb-a599-48ca-8a06-c8133a601a52.jpg "Chip Selector")
+
+
+   ```javascript
+<ReactChipSelector suggestedOptions={chipSelectorItems} chipSelectorOptions={(chipSelectorOptions)}
+ onSelectedOptionsChange={handleSelectedOptionsChange}></ReactChipSelector>
+   ```
+
+## Development
 
 In the project directory, you can run:
 
@@ -29,42 +64,19 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/raduzoom/react-chip-selector.svg?style=for-the-badge
+[contributors-url]: https://github.com/raduzoom/react-chip-selector/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/raduzoom/react-chip-selector.svg?style=for-the-badge
+[forks-url]: https://github.com/raduzoom/react-chip-selector/network/members
+[stars-shield]: https://img.shields.io/github/stars/raduzoom/react-chip-selector.svg?style=for-the-badge
+[stars-url]: https://github.com/raduzoom/react-chip-selector/stargazers
+[issues-shield]: https://img.shields.io/github/issues/raduzoom/react-chip-selector.svg?style=for-the-badge
+[issues-url]: https://github.com/raduzoom/react-chip-selector/issues
+[license-shield]: https://img.shields.io/github/license/raduzoom/react-chip-selector.svg?style=for-the-badge
+[license-url]: https://github.com/raduzoom/react-chip-selector/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/radu-hulubas-809404222/
+[product-screenshot]: images/screenshot.png
