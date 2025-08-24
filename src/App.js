@@ -7,21 +7,13 @@ import {ThemeContext, themes} from "./contexts/theme";
 // import 'chip-selector/dist/style/skins/skin-default.css';
 // import quillCss from 'chip-selector/dist/style/skins/skin-default.css';
 import {ReactChipSelector} from "./components";
+import {chipSelectorOptions} from "./App.config";
 
 
 class App extends React.Component {
 
   /** @var {ChipSelectorItem[]} */
-  chipSelectorOptions = [{
-    "htmlContent": "Apple to me",
-    "value": "apple",
-    "currentStatus": "unchecked"
-  }, {
-    "htmlContent": "Orange ",
-    "value": "orange",
-    "currentStatus": "checked"
-  },
-    {"htmlContent": "<span>Apricot</span> ", "value": "apricot", "currentStatus": "unchecked"}]
+  chipSelectorOptions = chipSelectorOptions
   ;
 
   constructor(props) {
@@ -78,7 +70,7 @@ class App extends React.Component {
     const chipSelectorOptions2 = {"inputPlaceholderText": "ceva2", viewSkin: 'default--theme-dark'};
 
     const handleSelectedOptionsChange = (options) => {
-      console.log('options - ', options);
+      console.log('options change - ', options);
       this.setState({
         selectedOptions: options
       });
@@ -125,8 +117,8 @@ class App extends React.Component {
 
               <ReactChipSelector suggestedOptions={this.chipSelectorOptions} chipSelectorOptions={(chipSelectorOptions)}
                                  onSelectedOptionsChange={handleSelectedOptionsChange}></ReactChipSelector>
-              <ReactChipSelector suggestedOptions={this.chipSelectorOptions} chipSelectorOptions={(chipSelectorOptions2)}
-                                 onSelectedOptionsChange={handleSelectedOptionsChange}></ReactChipSelector>
+              {/*<ReactChipSelector suggestedOptions={this.chipSelectorOptions} chipSelectorOptions={(chipSelectorOptions2)}*/}
+              {/*                   onSelectedOptionsChange={handleSelectedOptionsChange}></ReactChipSelector>*/}
             </div>
             <a
               className="App-link"
