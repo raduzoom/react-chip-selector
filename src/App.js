@@ -3,9 +3,6 @@ import './App.css';
 import React from "react";
 import {Header} from "./components/Header";
 import {ThemeContext, themes} from "./contexts/theme";
-// import styled, { createGlobalStyle } from 'styled-components';
-// import 'chip-selector/dist/style/skins/skin-default.css';
-// import quillCss from 'chip-selector/dist/style/skins/skin-default.css';
 import {ReactChipSelector} from "./components";
 import {chipSelectorOptions} from "./App.config";
 
@@ -67,7 +64,7 @@ class App extends React.Component {
     const HeaderComponent = (<Header></Header>);
 
     const chipSelectorOptions = {"inputPlaceholderText": "ceva1"};
-    const chipSelectorOptions2 = {"inputPlaceholderText": "ceva2", viewSkin: 'default--theme-dark'};
+    // const chipSelectorOptions2 = {"inputPlaceholderText": "ceva2", viewSkin: 'default--theme-dark'};
 
     const handleSelectedOptionsChange = (options) => {
       console.log('options change - ', options);
@@ -115,6 +112,7 @@ class App extends React.Component {
 
             <div style={wrapperStyle}>
 
+              app.js
               <ReactChipSelector suggestedOptions={this.chipSelectorOptions} chipSelectorOptions={(chipSelectorOptions)}
                                  onSelectedOptionsChange={handleSelectedOptionsChange}></ReactChipSelector>
               {/*<ReactChipSelector suggestedOptions={this.chipSelectorOptions} chipSelectorOptions={(chipSelectorOptions2)}*/}

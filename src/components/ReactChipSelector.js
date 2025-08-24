@@ -14,13 +14,12 @@ import React, {useEffect, useRef, useState} from 'react';
  * @returns {JSX.Element}
  * @constructor
  */
-import {dzsChipSelectorWebComponent_init} from "chip-selector/dist/dzsChipSelectorWebComponents";
+import {dzsChipSelectorWebComponent_init} from "chip-selector/web-components";
 
 dzsChipSelectorWebComponent_init();
 
 export function ReactChipSelector(props) {
 
-  const self = this;
   const [selectedOptions, setSelectedOptions] = useState([]);
 
 
@@ -44,7 +43,6 @@ export function ReactChipSelector(props) {
 
   /** @type {DzsChipSelector} */
   let $myRef = null;
-  const options = [];
   const addStyle = url => {
     const style = document.createElement("link");
     style.href = url;
@@ -56,6 +54,7 @@ export function ReactChipSelector(props) {
 
 
   const onUpdate = async (allOptions) => {
+    console.log('onUpdate')
     const selectedOptions = allOptions.filter((el) => el.currentStatus === 'checked');
     setSelectedOptions(
       selectedOptions
@@ -70,6 +69,7 @@ export function ReactChipSelector(props) {
   useEffect(() => {
     $myRef = myRef.current;
     addStyle(`https://unpkg.com/chip-selector/dist/style/skins/skin-${chipSelectorOptions.viewSkin}.css`);
+    console.log('$myRef', $myRef);
     $myRef.assignOnUpdateFunction = onUpdate;
 
 

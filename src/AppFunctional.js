@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRef, useEffect, useState } from 'react';
-import { dzsChipSelectorWebComponent_init } from 'chip-selector/dist/dzsChipSelectorWebComponents';
+import { dzsChipSelectorWebComponent_init } from 'chip-selector/web-components';
 
 dzsChipSelectorWebComponent_init();
 export default function App() {
@@ -34,7 +34,7 @@ export default function App() {
     /** @type {DzsChipSelector} */
     const dzsChipSelector = elementRef.current;
     if (dzsChipSelector) {
-      dzsChipSelector.onUpdate = onUpdate;
+      dzsChipSelector.assignOnUpdateFunction = onUpdate;
       addStyle(
         'https://unpkg.com/chip-selector/dist/style/skins/skin-default.css',
         dzsChipSelector
