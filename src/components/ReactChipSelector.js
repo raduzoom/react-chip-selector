@@ -70,7 +70,7 @@ export function ReactChipSelector(props) {
   useEffect(() => {
     $myRef = myRef.current;
     addStyle(`https://unpkg.com/chip-selector/dist/style/skins/skin-${chipSelectorOptions.viewSkin}.css`);
-    $myRef.onUpdate = onUpdate;
+    $myRef.assignOnUpdateFunction = onUpdate;
 
 
     return function cleanup() {
