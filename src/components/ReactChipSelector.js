@@ -67,10 +67,13 @@ export function ReactChipSelector(props) {
 
 
   useEffect(() => {
+    /** @type {ChipSelectorWebComponentDomItem} */
     $myRef = myRef.current;
     addStyle(`https://unpkg.com/chip-selector/dist/style/skins/skin-${chipSelectorOptions.viewSkin}.css`);
     console.log('$myRef', $myRef);
     $myRef.assignOnUpdateFunction = onUpdate;
+
+    $myRef.chipSelectorMain.apiReinit();
 
 
     return function cleanup() {
